@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  goapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3535:3535'
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ngl
+  postgres:
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ngl
